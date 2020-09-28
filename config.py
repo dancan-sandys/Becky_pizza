@@ -4,7 +4,7 @@ class Config:
 
 
     SECRET_KEY = 'yes'
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://Bryon:nayere@localhost/pizza_shop'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://sandys:Stanford1*@localhost/pizza_shop'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     UPLOADED_PHOTOS_DEST = 'app/static/image'
     SIMPLEMDE_JS_IIFE = True
@@ -32,12 +32,12 @@ class ProdConfig(Config):
 
 class DevConfig(Config):
 
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://Bryon:nayere@localhost/pizza_shop'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://sandys:Stanford1*@localhost/pizza_shop'
     DEBUG = True
 
 
 class TestConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://Bryon:nayere@localhost/pizza_shop_test'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://sandys:Stanford1*@localhost/pizza_shop'
 
 
 

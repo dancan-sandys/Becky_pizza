@@ -9,18 +9,19 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.9/css/mdb.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
-<link rel="stylesheet" href = "{{url_for('static',filename='css/styles.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
 
 
-    
+
 
 {%endblock%}
-<body class="body" style="background-image:url('static/image/background-pizza.jpeg)" ></body>
- {% block navbar %}
-        {% include "navbar.html" %}
-        {% endblock %}
-        {% block content %}
-        {% endblock %} 
+
+<body class="body" style="background-image:url('static/image/background-pizza.jpeg)"></body>
+{% block navbar %}
+{% include "navbar.html" %}
+{% endblock %}
+
+
 
 
 <!-- The home page  -->
@@ -81,7 +82,7 @@
         <div class=" pizza" id="pizza">
             <div>
                 <h2>Small pizza</h2>
-                <img src= "../static/small-pizza.jpg" alt="small pizza">
+                <img src="../static/small-pizza.jpg" alt="small pizza">
             </div>
             <div>
                 <h4>VEGETARIAN PIZZA</h4>
@@ -129,7 +130,7 @@
                             <img src="../static/image/stuffed-crust.jpg" style="margin: 12px 6px;" min-height="250px"
                                 class="card-img" alt="stuffed crust">
                         </div>
-                
+
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h3 class="card-title">Crispy Crust</h3>
@@ -189,8 +190,8 @@
                 <div class="card mb-3">
                     <div class="row no-gutters">
                         <div class="col-md-4">
-                            <img src="../static/image/gluten-Free-crust.jpg" style="margin: 12px 6px;" min-height="250px"
-                                class="card-img" alt="stuffed crust">
+                            <img src="../static/image/gluten-Free-crust.jpg" style="margin: 12px 6px;"
+                                min-height="250px" class="card-img" alt="stuffed crust">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
@@ -637,4 +638,3 @@
 
     {%endblock%}
     {% endblock %}
-    {%endblock%}

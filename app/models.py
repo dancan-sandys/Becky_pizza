@@ -8,28 +8,6 @@ from . import login_manager
 
 
 
-class Pizza(db.Model):
-    '''
-    Pizza ito define Pizza objects
-    '''
-
-    __tablename__='pizza'
-     
-    id=db.Column(db.Integer,primary_key=True)
-    size_price=db.relationship('Size', backref = 'sizes', lazy = 'dynamic')
-    size_price=db.Column(db.Integer,db.ForeignKey('size.price'))
-    flavore=db.relationship('Flavor', backref = 'flavor', lazy = 'dynamic')
-    flavor_price =db.Column(db.Integer,db.ForeignKey('flavor.price'))
-    toppings_price=db.Column(db.Integer,db.ForeignKey('toppings.price'))
-    toppings=db.relationship('Toppings', backref = 'toppings' , lazy = 'dynamic')
-    price=db.Column(db.Integer)
-    
-
-
-
-    def save_pizza(self):
-        db.session.add(self)
-        db.session.commit()
          
 
     
@@ -40,8 +18,8 @@ class Flavor(db.Model):
     id=db.Column(db.Integer,primary_key=True)
     pizza_id=db.Column(db.Integer)
     name=db.Column(db.String)
-    price=db.Column(db.Integer)
-    pizza = db.Column(db.Integer, db.ForeignKey("pizza.id"))
+    price=db.Column(db.Integer,unique=True)
+    pizza = db.relationship('Pizza', backref = "flavor", lazy = 'dynamic')
    
     
 
@@ -52,12 +30,12 @@ class Flavor(db.Model):
 
 class Size (db.Model):
 
-    __tablename__ = 'sizes'
+    __tablename__ = 'size'
 
     id = db.Column(db.Integer, primary_key = True)
     size = db.Column(db.String)
-    price = db.Column(db.Integer)
-    pizza = db.Column(db.Integer, db.ForeignKey("pizza.id"))
+    price = db.Column(db.Integer,unique=True)
+    pizza = db.relationship('Pizza', backref = "size", lazy = 'dynamic')
     
 
 
@@ -72,10 +50,31 @@ class Toppings(db.Model) :
 
     id = db.Column(db.Integer, primary_key = True)
     toppings = db.Column(db.String)
-    price =db.Column(db.Integer)
-    pizza = db.Column(db.Integer, db.ForeignKey("pizza.id"))
+    price =db.Column(db.Integer,unique=True)
+    pizza = db.relationship('Pizza', backref = "toppings", lazy = 'dynamic')
     
     def save_toppings(self):
+        db.session.add(self)
+        db.session.commit()
+
+
+class Pizza(db.Model):
+    '''
+    Pizza ito define Pizza objects
+    '''
+
+    __tablename__='pizza'
+     
+    id=db.Column(db.Integer,primary_key=True)
+    size_price=db.Column(db.Integer,db.ForeignKey('size.price'))
+    flavor_price =db.Column(db.Integer,db.ForeignKey('flavor.price'))
+    toppings_price=db.Column(db.Integer,db.ForeignKey('toppings.price'))
+    price=db.Column(db.Integer)
+    
+
+
+
+    def save_pizza(self):
         db.session.add(self)
         db.session.commit()
 
@@ -86,10 +85,8 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(255))
     email = db.Column(db.String(255), unique=True, index=True)
     pass_secure = db.Column(db.String(255))
-    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
     profile_pic_path = db.Column(db.String())
-    bio = db.Column(db.String(255))
-    reviews = db.relationship('Review', backref='user', lazy='dynamic')
+    bio = db.Column(db.String(255)) 
 
     @login_manager.user_loader
     def load_user (id):
